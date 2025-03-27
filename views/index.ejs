@@ -8,8 +8,12 @@
 <body>
     <h1>Welcome to the Home Page</h1>
     <ul>
-        <% messages.forEach(message => { %>
-            <li><strong><%= message.user %>:</strong> <%= message.text %> <em>(<%= message.added.toLocaleString() %>)</em></li>
+        <% messages.forEach((message, index) => { %>
+            <li>
+                <strong><%= message.user %>:</strong> <%= message.text %> 
+                <em>(<%= message.added.toLocaleString() %>)</em>
+                <a href="/message/<%= index %>">Open</a> <!-- Add the "open" link -->
+            </li>
         <% }) %>
     </ul>
     <a href="/new">Add a new message</a>

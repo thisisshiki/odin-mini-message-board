@@ -40,9 +40,20 @@ app.get('/new', (req, res) => {
 
 // Handle form submission
 app.post('/new', (req, res) => {
-    const { message, user } = req.body;
-    messages.push({ text: message, user: user, added: new Date() });
-    res.redirect('/');
+    const { message, user } = req.body; // Extract user and message from the form
+    messages.push({ text: message, user: user, added: new Date() }); // Add the new message to the array
+    res.redirect('/'); // Redirect back to the homepage
+});
+
+// Define the message details route
+app.get('/message/:id', (req, res) => {
+    const messageId = parseInt(req.params.id, 10); // Get the message ID from the URL
+    const message = messages[messageId]; // Find the message by its index
+    if (message) {
+        res.render('message', { title: 'Message Details', message: message });
+    } else {
+        res.status(404).send('Message not found');
+    }
 });
 
 // Start the server
