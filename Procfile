@@ -1,2 +1,1 @@
-git add Procfile
-git commit -m "Add Procfile for deployment"
+web: node app.js
